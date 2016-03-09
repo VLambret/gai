@@ -1,0 +1,6 @@
+commit 100 100 red
+generate_file
+commit 100 200 red
+generate_file
+commit 100 300 red
+generate_file

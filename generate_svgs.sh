@@ -2,23 +2,52 @@
 
 HEIGHT=500
 WIDTH=500
+FILE_COUNTER=0
+PREFIX="out/output_"
+CONTENT=
 
-HEADER="<svg height=\"${HEIGHT}\" width=\"${WIDTH}\">"
-FOOTER="</svg>"
-
-function print_commit
+function header
 {
-	X=$1
-	Y=$2
-	COLOR=$3
-	echo "<circle cx=\"$X\" cy=\"$Y\" r=\"20\" stroke=\"black\" stroke-width=\"3\" fill=\"$COLOR\" />"
+	echo "<svg height=\"${HEIGHT}\" width=\"${WIDTH}\">"
+}
+
+function footer
+{
+	echo "</svg>"
+}
+
+function content
+{
+	echo $CONTENT
 }
 
 function generate_file
 {
-	echo $HEADER
-	print_commit 100 100 red
-	echo $FOOTER
+	FILENAME=${PREFIX}$(printf "%04d" $FILE_COUNTER).svg
+	FILE_COUNTER=$(($FILE_COUNTER + 1))
+
+	header > $FILENAME
+	content >> $FILENAME
+	footer >> $FILENAME
 }
 
-generate_file >> sample.svg
+function commit
+{
+	X=$1
+	Y=$2
+	COLOR=$3
+	CONTENT+=$(echo "<circle cx=\"$X\" cy=\"$Y\" r=\"20\" stroke=\"black\" stroke-width=\"3\" fill=\"$COLOR\" />")
+}
+
+
+function factory
+{
+	INSTRUCTION_FILE=$1
+	while read i;
+	do
+		$i
+	done < $INSTRUCTION_FILE;
+}
+
+#generate_file >> sample.svg
+factory instructions.vit

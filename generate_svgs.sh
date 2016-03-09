@@ -1,10 +1,12 @@
 #! /bin/bash
 
+
 HEIGHT=500
 WIDTH=500
 FILE_COUNTER=0
 PREFIX="out/output_"
 CONTENT=
+declare -A COMMITS
 
 function header
 {
@@ -18,7 +20,10 @@ function footer
 
 function content
 {
-	echo $CONTENT
+	for i in "${!COMMITS[@]}"
+	do
+		echo ${COMMITS[$i]}
+	done
 }
 
 function generate_file
@@ -33,12 +38,14 @@ function generate_file
 
 function commit
 {
-	X=$1
-	Y=$2
-	COLOR=$3
-	CONTENT+=$(echo "<circle cx=\"$X\" cy=\"$Y\" r=\"20\" stroke=\"black\" stroke-width=\"3\" fill=\"$COLOR\" />")
-}
+	NAME=$1
+	X=$2
+	Y=$3
+	COLOR=$4
 
+	C=$(echo "<circle cx=\"$X\" cy=\"$Y\" r=\"20\" stroke=\"black\" stroke-width=\"3\" fill=\"$COLOR\" />")
+	COMMITS[$NAME]=$C
+}
 
 function factory
 {

@@ -1,10 +1,13 @@
 from commit import *
+from svg_document import *
 import cmd, sys
 
 class gai(cmd.Cmd):
 
     def __init__(self):
         self.commits = {}
+        self.number = 0
+        self.document = svg_document("output_", 1000, 1000, "white")
         super(gai, self).__init__()
 
     def emptyline(self):
@@ -21,13 +24,23 @@ class gai(cmd.Cmd):
         x = p[1]
         y = p[2]
         color = p[3]
-        parent= p[4]
+        if p.len() == 4:
+            parent= p[4]
+        else:
+            parent = ""
         self.commits[tag] = commit(tag, x, y, color, parent)
 
     def do_snapshot(self, arg):
+        f = self.document.nextFile()
+        self.document.header(f)
         for tag in self.commits:
-            print(tag)
-            self.commits[tag].toSVG()
+            line = self.commits[tag].toSVG()
+            f.write(line)
+        self.document.footer(f)
+        f.close()
+
+
+        
 
     def run(self):
         for line in self.f:

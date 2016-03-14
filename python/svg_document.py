@@ -28,7 +28,7 @@ class svg_document:
             if c.parent == "":
                 continue
             p = commits[c.parent]
-            line = "<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" style=\"stroke:black;stroke-width:10\" />".format(c.x, c.y, p.x, p.y)
+            line = "<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" style=\"stroke:black;stroke-width:10\" />\n".format(c.x, c.y, p.x, p.y)
             f.write(line)
 
     def generate_commits(self, commits, f):

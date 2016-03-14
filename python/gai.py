@@ -43,9 +43,7 @@ class gai(cmd.Cmd):
     def do_snapshot(self, arg):
         f = self.document.nextFile()
         self.document.header(f)
-        for tag in self.commits:
-            line = self.commits[tag].toSVG()
-            f.write(line)
+        self.document.generate_commits(self.commits, f)
         self.document.footer(f)
         f.close()
 

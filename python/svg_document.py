@@ -1,3 +1,5 @@
+from commit import *
+
 class svg_document:
 
     def __init__(self, prefix, width, height, background):
@@ -20,3 +22,8 @@ class svg_document:
         s = "</svg>"
         f.write(s)
 
+    def generate_commits(self, commits, f):
+        for tag in commits:
+            line = commits[tag].toSVG()
+            f.write(line)
+        

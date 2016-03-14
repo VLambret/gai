@@ -18,13 +18,23 @@ class gai(cmd.Cmd):
 
     do_EOF = do_exit
 
+    def do_new(self, arg):
+        p = arg.split(' ')
+        if len(p) != 4:
+            print("Invalid parameters")
+            return
+        self.document = svg_document(p[0], p[1], p[2], p[3])
+
     def do_commit(self, arg):
         p = arg.split(' ')
+        if len(p) != 4 and len(p) != 3:
+            print("Invalid parameters")
+            return
         tag = p[0]
         x = p[1]
         y = p[2]
         color = p[3]
-        if p.len() == 4:
+        if len(p) == 4:
             parent= p[4]
         else:
             parent = ""
@@ -38,9 +48,6 @@ class gai(cmd.Cmd):
             f.write(line)
         self.document.footer(f)
         f.close()
-
-
-        
 
     def run(self):
         for line in self.f:

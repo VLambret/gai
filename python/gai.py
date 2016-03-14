@@ -27,14 +27,14 @@ class gai(cmd.Cmd):
 
     def do_commit(self, arg):
         p = arg.split(' ')
-        if len(p) != 4 and len(p) != 3:
+        if len(p) != 4 and len(p) != 5:
             print("Invalid parameters")
             return
         tag = p[0]
         x = p[1]
         y = p[2]
         color = p[3]
-        if len(p) == 4:
+        if len(p) == 5:
             parent= p[4]
         else:
             parent = ""

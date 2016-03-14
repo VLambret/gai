@@ -1,9 +1,7 @@
-SCRIPT=generate_svgs.sh
-
-all: sample.svg
+all: test
 
 clean:
 	rm -f out/*
 
-sample.svg : $(SCRIPT)
-	./$(SCRIPT)
+test :
+	python3 python/gai.py < instructions.gai

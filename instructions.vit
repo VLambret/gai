@@ -1,6 +1,0 @@
-commit c1 100 100 red
-generate_file
-commit c2 100 200 red
-generate_file
-commit c3 100 300 red
-generate_file

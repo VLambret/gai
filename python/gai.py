@@ -43,6 +43,7 @@ class gai(cmd.Cmd):
     def do_snapshot(self, arg):
         f = self.document.nextFile()
         self.document.header(f)
+        self.document.generate_links(self.commits, f)
         self.document.generate_commits(self.commits, f)
         self.document.footer(f)
         f.close()

@@ -22,6 +22,15 @@ class svg_document:
         s = "</svg>"
         f.write(s)
 
+    def generate_links(self, commits, f):
+        for tag in commits:
+            c = commits[tag]
+            if c.parent == "":
+                continue
+            p = commits[c.parent]
+            line = "<line x1=\"{}\" y1=\"{}\" x2=\"{}\" y2=\"{}\" style=\"stroke:black;stroke-width:10\" />".format(c.x, c.y, p.x, p.y)
+            f.write(line)
+
     def generate_commits(self, commits, f):
         for tag in commits:
             line = commits[tag].toSVG()

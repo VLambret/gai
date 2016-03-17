@@ -5,3 +5,6 @@ clean:
 
 test :
 	python3 python/gai.py < instructions.gai
+
+anim:
+	./animate.sh

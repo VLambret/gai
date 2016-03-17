@@ -6,3 +6,7 @@ commit c2 100 200 red c1
 snapshot 25
 commit c3 100 300 red c2
 snapshot 25
+commit c4 200 300 blue c2
+snapshot 25
+commit c5 200 400 blue c4
+snapshot 25

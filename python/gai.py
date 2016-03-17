@@ -1,5 +1,6 @@
 from commit import *
 from svg_document import *
+from re import sub
 import cmd, sys
 
 class gai(cmd.Cmd):
@@ -17,6 +18,9 @@ class gai(cmd.Cmd):
         return True
 
     do_EOF = do_exit
+
+    def precmd(self, line):
+        return sub('#.*$', '', line)
 
     def do_new(self, arg):
         p = arg.split(' ')

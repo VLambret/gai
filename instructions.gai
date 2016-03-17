@@ -1,5 +1,6 @@
 new out/output_ 500 500 white 
 commit c1 100 100 red
+# This is a comment
 snapshot 25
 commit c2 100 200 red c1
 snapshot 25

@@ -1,7 +1,7 @@
 new out/output_ 500 500 white 
 commit c1 100 100 red
-snapshot
+snapshot 25
 commit c2 100 200 red c1
-snapshot
+snapshot 25
 commit c3 100 300 red c2
-snapshot
+snapshot 25

@@ -41,12 +41,21 @@ class gai(cmd.Cmd):
         self.commits[tag] = commit(tag, x, y, color, parent)
 
     def do_snapshot(self, arg):
-        f = self.document.nextFile()
-        self.document.header(f)
-        self.document.generate_links(self.commits, f)
-        self.document.generate_commits(self.commits, f)
-        self.document.footer(f)
-        f.close()
+        p = arg.split(' ')
+        if len(p) > 1:
+            print("Invalid parameters")
+            return
+        if len(p) == 1:
+            n = int(p[0])
+        else:
+            n = 1
+        for i in range(n):
+            f = self.document.nextFile()
+            self.document.header(f)
+            self.document.generate_links(self.commits, f)
+            self.document.generate_commits(self.commits, f)
+            self.document.footer(f)
+            f.close()
 
     def run(self):
         for line in self.f:
